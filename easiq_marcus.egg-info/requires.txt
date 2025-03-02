@@ -1,0 +1,2 @@
+pyssian@ git+https://github.com/maserasgroup-repo/pyssian.git@develop
+pyssianutils@ git+https://github.com/maserasgroup-repo/pyssian-utils.git

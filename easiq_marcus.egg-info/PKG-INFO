@@ -1,0 +1,8 @@
+Metadata-Version: 2.2
+Name: easiq_marcus
+Version: 0.1
+Author: Lucía Morán-González, Albert Solé-Daura, Feliu Maseras
+Requires-Dist: pyssian@ git+https://github.com/maserasgroup-repo/pyssian.git@develop
+Requires-Dist: pyssianutils@ git+https://github.com/maserasgroup-repo/pyssian-utils.git
+Dynamic: author
+Dynamic: requires-dist
