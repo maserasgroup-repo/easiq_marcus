@@ -1,0 +1,9 @@
+name: easiq_marcus-env
+channels:
+  - defaults
+dependencies:
+  - python=3.9  # Specify your desired Python version
+  - pip
+  - pip:
+      - pyssian @ git+https://github.com/maserasgroup-repo/pyssian.git@develop
+      - pyssianutils @ git+https://github.com/maserasgroup-repo/pyssian-utils.git
