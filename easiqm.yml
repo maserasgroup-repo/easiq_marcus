@@ -1,4 +1,4 @@
-name: easiq_marcus-env
+name: easiqm
 channels:
   - defaults
 dependencies:
