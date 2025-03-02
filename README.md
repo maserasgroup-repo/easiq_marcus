@@ -31,12 +31,15 @@ Easiq_marcus is a collection of multiple Python scripts. The recommended steps t
   ```bash
    conda env create -name easiqm
    conda activate easiqm
-   pip install -e git+https://github.com/maserasgroup/easiq_marcus.git
+  ```
+4   **Install the repository**
+  ```bash
+  pip install -e git+https://github.com/maserasgroup/easiq_marcus.git
   ```
   while the repository is private, organization people can install the package using 
   $ 
   ```bash
-   pip install -e git+https://<USERNAME>:<TOKEN>@github.com/maserasgroup-repo/easiq_marcus.git 
+   pip install -e git+https://<USERNAME>:<TOKEN>@github.com/maserasgroup-repo/easiq_marcus.git#egg=easiq_marcus
   ```
 4.  **If you want to use the Jupyter notebook, install the IPython kernel:** \
 Dependencies for running the Jupyter notebook:
