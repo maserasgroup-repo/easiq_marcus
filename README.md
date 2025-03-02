@@ -17,7 +17,7 @@ Easiq_marcus is a collection of multiple Python scripts. The recommended steps t
 
 1. **Clone the repository**:
   ```bash
-   git clone https://github.com/maserasgroup/easiq_marcus.git
+   git clone https://github.com/maserasgroup-repo/easiq_marcus.git
    cd easiq_marcus
   ```
 2.  **It is recommended to set up a virtual environment with the .yml file**.
