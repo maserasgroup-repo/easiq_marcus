@@ -17,7 +17,7 @@ Easiq_marcus is a collection of multiple Python scripts. The recommended steps t
    cd easiq_marcus
   ```
 2.  **Set up the virtual environment** \
-2.1.  It is recommended to create the environment the `.yml` file. All the dependencies are installed. \
+2.1.  It is recommended to create the environment with the `.yml` file because all the dependencies are installed. \
 Using conda (it can also be set up with pip and venv):
   ```bash
    conda env create -f easiqm.yml
@@ -25,8 +25,8 @@ Using conda (it can also be set up with pip and venv):
    pip install -e .
   ```
 
-2.2  Alternative: Manually Install Dependencies:
-If you prefer not to use the .yml file, you can manually create a Conda environment and install the dependencies:
+2.2  Alternative, manually onstall dependencies:
+If you prefer not to use the `.yml` file, you can manually create a Conda environment and install the dependencies:
 
   ```bash
    conda env create -name easiqm python=3.9
