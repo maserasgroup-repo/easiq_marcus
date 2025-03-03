@@ -22,6 +22,7 @@ Using conda (it can also be set up with pip and venv):
   ```bash
    conda env create -f easiqm.yml
    conda activate easiqm
+   pip install -e .
   ```
 
 2.2  Alternative: Manually Install Dependencies:
@@ -34,7 +35,7 @@ If you prefer not to use the .yml file, you can manually create a Conda environm
   ```
 
 3. **Install additional required libraries:** \
-If neither 2.1 nor 2.2 is carried out, you will need to manually install the following dependencies:
+If the step 2.2 is carried out, you will need to manually install the following dependencies:
 \
 The easiq_marcus package relies on the `pyssian` and `pyssianutils` libraries for managing Gaussian input and output files. These libraries must be installed before using easiq_marcus:
 
@@ -46,13 +47,13 @@ The easiq_marcus package relies on the `pyssian` and `pyssianutils` libraries fo
 The remaining prerequisites are Python's built-in modules and do not require separate installation.
 
 4. **Install the easiq_marcus package:**\
-If you have already followed 2.1 or 2.2, the package is already installed, and you can skip this step. Otherwise, install the package directly from the GitHub repository:
+If you have already followed 1 + 2.1 or 2.2, the package is already installed, and you can skip this step. Otherwise, install the package directly from the GitHub repository:
 
   ```bash
 pip install -e git+https://github.com/maserasgroup-repo/easiq_marcus.git
   ```
 
-***For private repository access:*** \
+***(!)For private repository access:*** \
 If the repository is private, organization members can install the package using their GitHub username and token:
 
   ```bash
