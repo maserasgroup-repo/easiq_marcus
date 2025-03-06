@@ -156,11 +156,12 @@ def wait_condition(reactant=None, product=None):
 
     for i in range(len(reactant)):
         chkFileReactantS.append(Path(Path(reactant[i]).stem + '_solvent.chk'))
-        OFileReactantS.append(Path(reactant[i]).with_suffix('.out'))
+        OFileReactantS.append([Path(reactant[i]).with_suffix(ext) for ext in ['.out', '.log']])
 
     for i in range(len(product)):
         chkFileProductS.append(Path(Path(product[i]).stem + '_solvent.chk'))
-        OFileProductS.append(Path(product[i]).with_suffix('.out'))
+        #OFileProductS.append(Path(product[i]).with_suffix('.out'))
+        OFileProductS.append([Path(reactant[i]).with_suffix(ext) for ext in ['.out', '.log']])
 
     # check if chk file exists
     chkFile = chkFileReactantS + chkFileProductS
