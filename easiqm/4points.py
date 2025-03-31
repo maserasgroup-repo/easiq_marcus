@@ -12,6 +12,7 @@ from shutil import copy         # copy chk files
 from pathlib import Path    # to add the names
 from collections import namedtuple          # queues system
 
+from .get_info import extract_info
 from .utilities import load_dict, wait_condition, submitcalculation, inputsumbit, replace_to_chkbasis
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -141,11 +142,19 @@ if __name__ == "__main__":
 
     # change the input_data with tail_basisset if dict_args['tail'] is not None
     if dict_args['usebasisset'] == 'no':
-        input_data = load_dict()
+        if os.path.exists("input_data.pkl"):
+            input_data = load_dict()
+        else:
+            input_data = extract_info(reactant, product)
+
         input_data = replace_to_chkbasis(input_data, "commandline_prod")
         input_data = replace_to_chkbasis(input_data, "commandline_react")
     else:
-        input_data = load_dict()
+        if os.path.exists("input_data.pkl"):
+            input_data = load_dict()
+        else:
+            input_data = extract_info(reactant, product)
+
         print(f"Basis set are retrieved from the input line of the previous calculation. "
         f"Check if the information is provided.")
         input_data = replace_to_chkbasis(input_data, "commandline_prod")
