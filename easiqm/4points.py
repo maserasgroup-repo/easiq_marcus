@@ -138,13 +138,14 @@ if __name__ == "__main__":
     FileStruct_noneq = '%nprocshared={nprocs}\n%mem={mem}\n%chk={chk}\n{Header}\n\n{Title}\n\n{charge} {spin}\n{Division}%nprocshared={nprocs}\n%mem={mem}\n%chk={chk}\n{Header2}\n\n{Title2}\n\n{charge2} {spin2}\n{Tail_input}\n\n\n\n\n'
 
     wait_condition(reactant, product)
-    input_data = load_dict()
 
     # change the input_data with tail_basisset if dict_args['tail'] is not None
     if dict_args['usebasisset'] == 'no':
+        input_data = load_dict()
         input_data = replace_to_chkbasis(input_data, "commandline_prod")
         input_data = replace_to_chkbasis(input_data, "commandline_react")
     else:
+        input_data = load_dict()
         print(f"Basis set are retrieved from the input line of the previous calculation. "
         f"Check if the information is provided.")
         input_data = replace_to_chkbasis(input_data, "commandline_prod")
