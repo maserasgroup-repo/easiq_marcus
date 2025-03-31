@@ -16,7 +16,8 @@ Easiq_marcus is a collection of multiple Python scripts. The recommended steps t
    git clone https://github.com/maserasgroup-repo/easiq_marcus.git
    cd easiq_marcus
   ```
-2.  **Set up the virtual environment** \
+2.  **Set up the virtual environment** 
+
 2.1.  It is recommended to create the environment with the `.yml` file because all the dependencies are installed. \
 Using conda (it can also be set up with pip and venv):
   ```bash
@@ -24,8 +25,7 @@ Using conda (it can also be set up with pip and venv):
    conda activate easiqm
    pip install -e .
   ```
-
-2.2  Alternative, manually onstall dependencies:
+2.2  Alternative to 2.1. step, manually install dependencies: \
 If you prefer not to use the `.yml` file, you can manually create a Conda environment and install the dependencies:
 
   ```bash
@@ -34,8 +34,9 @@ If you prefer not to use the `.yml` file, you can manually create a Conda enviro
    pip install -e .
   ```
 
-3. **Install additional required libraries:** \
-If the step 2.2 is carried out, you will need to manually install the following dependencies:
+3. **Install additional required libraries:** 
+
+If the step 2.2 is carried out, you will need to manually install the following dependencies (skip this step 3. if you followed 2.1):
 \
 The easiq_marcus package relies on the `pyssian` and `pyssianutils` libraries for managing Gaussian input and output files. These libraries must be installed before using easiq_marcus:
 
@@ -46,8 +47,9 @@ The easiq_marcus package relies on the `pyssian` and `pyssianutils` libraries fo
 
 The remaining prerequisites are Python's built-in modules and do not require separate installation.
 
-4. **Install the easiq_marcus package:**\
-If you have already followed 1 + 2.1 or 2.2, the package is already installed, and you can skip this step. Otherwise, install the package directly from the GitHub repository:
+4. **Install the easiq_marcus package:**
+
+If you have already followed **1 + 2.1** or **1 + 2.2 + 3** steps, the package is already installed, and you can skip this step 4. Otherwise, install the package directly from the GitHub repository:
 
   ```bash
 pip install -e git+https://github.com/maserasgroup-repo/easiq_marcus.git
@@ -60,7 +62,8 @@ If the repository is private, organization members can install the package using
 pip install -e git+https://<USERNAME>:<TOKEN>@github.com/maserasgroup-repo/easiq_marcus.git#egg=easiq_marcus
   ```
 
-5.  **If you want to use the Jupyter notebook, install the IPython kernel:** \
+5.  **If you want to use the Jupyter notebook, install the IPython kernel:**
+
 Dependencies for running the Jupyter notebook:
 - jupyter
 - ipykernel
