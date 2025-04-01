@@ -31,7 +31,7 @@ Using conda (it can also be set up with pip and venv):
 If you prefer not to use the `.yml` file, you can manually create a Conda environment and install the dependencies:
 
   ```bash
-   conda env create -name easiqm python=3.9
+   conda create --name easiqm python=3.9
    conda activate easiqm
    pip install -e .
   ```
