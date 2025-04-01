@@ -49,7 +49,7 @@ The remaining prerequisites are Python's built-in modules and do not require sep
 
 4. **Install the easiq_marcus package:**
 
-If you have already followed **1 + 2.1** or **1 + 2.2 + 3** steps, the package is already installed, and you can skip this step 4. Otherwise, install the package directly from the GitHub repository:
+If you have already followed steps **1 + 2.1** or **1 + 2.2 + 3**, the package is already installed, and you can skip this step 4. Otherwise, you either create an empty conda environment first and then install the package directly from the GitHub repository, or install the package directly in your python base:
 
   ```bash
 pip install -e git+https://github.com/maserasgroup-repo/easiq_marcus.git
