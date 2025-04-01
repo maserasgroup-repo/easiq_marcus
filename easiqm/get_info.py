@@ -292,7 +292,7 @@ if __name__ == "__main__":
                 inputsumbit(filestorun) # generate a list with the input names
 
             else:
-                print(f'Tail file provided: {dict_args[tail_arg]}')
+                print("Tail file provided")
                 namesIn_prodS, namesIn_reactS = compute_chk(reactant, product, dict_args, input_data, FileStruct_chk)
                 filestorun = namesIn_prodS + namesIn_reactS
                 #submitcalculation(software, filestorun)
