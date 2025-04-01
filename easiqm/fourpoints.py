@@ -29,7 +29,7 @@ parser.add_argument('-UseBasisSet', '--usebasisset',
                     help="""Maintain the basis set described in the previous input line.
                     By default, the basis set are retrived from the chk file.""")
 
-def noneq_points(reactant, product, input_data, FileStruct_noneq):
+def noneq_points(reactant, product, input_data, FileStruct_noneq, smodel, solvent):
     """
     Design input files 'non_eq' with the previous information and copy the
     .chk files derived from the previous script get_info.py
@@ -160,7 +160,7 @@ if __name__ == "__main__":
         input_data = replace_to_chkbasis(input_data, "commandline_prod")
         input_data = replace_to_chkbasis(input_data, "commandline_react")
 
-    nameInReactnoneq, nameInProdnoneq = noneq_points(reactant, product, input_data, FileStruct_noneq)
+    nameInReactnoneq, nameInProdnoneq = noneq_points(reactant, product, input_data, FileStruct_noneq, smodel, solvent)
     files_to_send = nameInReactnoneq + nameInProdnoneq
     #submitcalculation(software, files_to_send)
     inputsumbit(files_to_send)      # generate a list with the input names

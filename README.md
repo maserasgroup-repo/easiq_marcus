@@ -91,7 +91,6 @@ There are four python scripts (contained in the PyOSET directory). The functiona
 ## Example Usage - Obtain the energetic parameters involved in the SET/EnT step
 
 
-
 ### Authors
 Lucía Morán-González - [lmoranglez](https://github.com/lmoranglez) \
 Albert Solé-Daura - [asoledaura](https://github.com/asoledaura) \
