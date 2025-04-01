@@ -134,11 +134,11 @@ def warning_basisset(input_data, key):
     for i, command in enumerate(input_data[key]):
         matches = pattern.findall(command)
         if matches:
-            raise ValueError(f'Keywords found in command line {i} of {key}: {matches}. \
-                             Please, add tail file with the basis set.')
+            raise ValueError(f'Keywords found in command line {i} of {key}: {matches}. \n'
+                             'Please, add tail file with the basis set.')
         else:
-            print(f'No keyword found in command line {i + 1} of {key}, \
-                  the default basis set will be used.')
+            print(f'No keyword found in command line {i + 1} of {key}, \n'
+                  'The default basis set will be used.')
 
 def wait_condition(reactant=None, product=None):
     """

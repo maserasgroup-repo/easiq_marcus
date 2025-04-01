@@ -453,8 +453,8 @@ class Tools:
             WriteOutput(line_fmt4.format(round(reorg,1), round(r_energy,1),
                         round(act_energy,1)))
             print('--'*36)
-            print('Note: The values of "A" have been empirically determined for the DMF solvent. \
-                  Applying this method to reactions in other solvents may lead to unrealistic results.')
+            print('Note: The values of "A" have been empirically determined for the DMF solvent. \n'
+            'Applying this method to reactions in other solvents may lead to unrealistic results.')
             
         reorg_energy()
 

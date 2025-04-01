@@ -65,6 +65,7 @@ If the repository is private, organization members can install the package using
   ```bash
 pip install -e git+https://<USERNAME>:<TOKEN>@github.com/maserasgroup-repo/easiq_marcus.git#egg=easiq_marcus
   ```
+Note that the easiq_marcus folder will be in `src` folder.
 
 5.  **If you want to use the Jupyter notebook, install the IPython kernel:**
 
@@ -76,7 +77,7 @@ Dependencies for running the Jupyter notebook:
 pip install jupyter ipykernel
 python -m ipykernel install --user --name=easiqm --display-name "ieasiqm"
 ```
-Type jupyter-notebook to access to the files. \
+Type `jupyter-notebook` to access to the files. \
 Unzip the folder `calculations.zip` and move the files to the folder `tutorials_easiq_marcus` to use `fourpoint_method.ipynb` and `harsphere_method.ipynb`
 
 
