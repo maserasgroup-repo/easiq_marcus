@@ -160,8 +160,7 @@ def wait_condition(reactant=None, product=None):
 
     for i in range(len(product)):
         chkFileProductS.append(Path(Path(product[i]).stem + '_solvent.chk'))
-        #OFileProductS.append(Path(product[i]).with_suffix('.out'))
-        OFileProductS.append([Path(reactant[i]).with_suffix(ext) for ext in ['.out', '.log']])
+        OFileProductS.append([Path(product[i]).with_suffix(ext) for ext in ['.out', '.log']])
 
     # check if chk file exists
     chkFile = chkFileReactantS + chkFileProductS
@@ -174,10 +173,17 @@ def wait_condition(reactant=None, product=None):
     # Check if output file exists with or without the '_solvent.out' ending
     OFile = OFileReactantS + OFileProductS
 
-    for file in OFile:
-        while not check_file_exists(file):
-            print(f'Waiting for {file} file')
-            break
+    #for file in OFile:
+    #    while not check_file_exists(file):
+    #        print(f'Waiting for {file} file')
+    #        break
+
+    for fileset in OFile:
+        
+        if not any(check_file_exists(file) for file in fileset):
+            print(f'Waiting for at least one terminated output file for: {[str(f) for f in fileset]}')
+        else:
+            print(f'Found a terminated output file for: {[str(f) for f in fileset]}')
 
 def inputsumbit(files):
     """
