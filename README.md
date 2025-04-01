@@ -8,8 +8,10 @@ Python package that facilitates the design of the Gaussian calculations and the 
 
 *  `pip` or `conda` (for package management)
 
-### Download and Installing the Code
-Easiq_marcus is a collection of multiple Python scripts. The recommended steps to download and install the package are:
+## Download and Installing the Code
+Easiq_marcus is a collection of multiple Python scripts. You can download and install the packages usign either of these methods:
+
+### Method 1: Install from the source
 
 1. **Clone the repository**:
   ```bash
@@ -47,9 +49,11 @@ The easiq_marcus package relies on the `pyssian` and `pyssianutils` libraries fo
 
 The remaining prerequisites are Python's built-in modules and do not require separate installation.
 
+### Method 2: Direct pip install
+
 4. **Install the easiq_marcus package:**
 
-If you have already followed steps **1 + 2.1** or **1 + 2.2 + 3**, the package is already installed, and you can skip this step 4. Otherwise, you either create an empty conda environment first and then install the package directly from the GitHub repository, or install the package directly in your python base:
+If you have already followed the **Method 1**, the package is already installed, and you can skip this step 4. Otherwise, you either create an empty conda environment first and then install the package directly from the GitHub repository, or install the package directly in your python base:
 
   ```bash
 pip install -e git+https://github.com/maserasgroup-repo/easiq_marcus.git
@@ -73,7 +77,7 @@ pip install jupyter ipykernel
 python -m ipykernel install --user --name=easiqm --display-name "ieasiqm"
 ```
 Type jupyter-notebook to access to the files. \
-Unzip the folder `calculations.zip` and move the files to the folder `tutorials_easiq_marcus` to use `4point_method.ipynb` and `harsphere_method.ipynb`
+Unzip the folder `calculations.zip` and move the files to the folder `tutorials_easiq_marcus` to use `fourpoint_method.ipynb` and `harsphere_method.ipynb`
 
 
 ## easiq_marcus package
@@ -84,7 +88,7 @@ There are four python scripts (contained in the PyOSET directory). The functiona
 
 * **get_info.py**: script that extracts the information from the Gaussian output files of the reactants and products and save it in a dictionary. This dictionary is used in the next script.
 
-* **4points.py**: script that creates input files required to obtain the value of the free energy of the SET/EnT activation barrier using the approximation of the 4-points from two parabolas.
+* **fourpoints.py**: script that creates input files required to obtain the value of the free energy of the SET/EnT activation barrier using the approximation of the 4-points from two parabolas.
 
 * **get_results.py**: script that provides the free energy of the SET/EnT transfer following approximations of the Marcus theory.
 
