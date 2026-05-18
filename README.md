@@ -14,7 +14,7 @@ The package works directly with Gaussian input/output files and does not require
 Install from a local clone:
 
 ```bash
-git clone https://github.com/maserasgroup-repo/easiq-marcus.git
+git clone https://github.com/maserasgroup-repo/easiq_marcus.git
 cd easiq-marcus
 pip install .
 ```
@@ -22,7 +22,7 @@ pip install .
 Install directly from GitHub once the repository is published:
 
 ```bash
-pip install git+https://github.com/maserasgroup-repo/easiq-marcus.git
+pip install git+https://github.com/maserasgroup-repo/easiq_marcus.git
 ```
 
 For development:
