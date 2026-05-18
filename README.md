@@ -17,7 +17,7 @@ cd easiq-marcus
 pip install .
 ```
 
-Install directly from GitHub once the repository is published:
+Install directly from GitHub:
 
 ```bash
 pip install git+https://github.com/maserasgroup-repo/easiq_marcus.git
