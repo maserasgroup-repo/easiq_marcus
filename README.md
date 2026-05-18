@@ -7,8 +7,6 @@ The current workflow is intentionally simple:
 - `fourpoints` prepares the equilibrium and nonequilibrium Gaussian input files required for a four-point Marcus analysis
 - `get_results` parses Gaussian output files and reports reaction free energies, reorganization energies, and free-energy barriers
 
-The package works directly with Gaussian input/output files and does not require `pyssian` or any other external chemistry-specific Python library.
-
 ## Installation
 
 Install from a local clone:
