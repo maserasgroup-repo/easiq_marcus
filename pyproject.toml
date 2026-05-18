@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easiq-marcus"
+version = "0.1.0"
+description = "Utilities to apply the Marcus theory for calculating electron and energy transfer free-energy barriers using Gaussian 16."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "Lucía Morán-González" },
+  { name = "Albert Solé-Daura" },
+  { name = "Feliu Maseras" }
+]
+keywords = ["gaussian", "marcus", "chemistry", "electron transfer"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Chemistry",
+]
+
+[project.urls]
+Homepage = "https://github.com/maserasgroup-repo/easiq-marcus"
+Repository = "https://github.com/maserasgroup-repo/easiq-marcus"
+
+[project.scripts]
+fourpoints = "easiq_marcus.fourpoints:main"
+get_results = "easiq_marcus.get_results:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

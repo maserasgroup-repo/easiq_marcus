@@ -1,0 +1,86 @@
+Metadata-Version: 2.4
+Name: easiq-marcus
+Version: 0.1.0
+Summary: Utilities to generate Gaussian 4-point inputs and analyze Marcus-theory energies.
+Author: Albert Sole
+Project-URL: Homepage, https://github.com/your-user/easiq-marcus
+Project-URL: Repository, https://github.com/your-user/easiq-marcus
+Keywords: gaussian,marcus,chemistry
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+
+# easiq-marcus
+
+Command-line tools for Marcus-theory workflows with Gaussian input and output files.
+
+## Installation
+
+Install from a local clone:
+
+```bash
+git clone https://github.com/your-user/easiq-marcus.git
+cd easiq-marcus
+pip install .
+```
+
+Install directly from GitHub once the repository is published:
+
+```bash
+pip install git+https://github.com/your-user/easiq-marcus.git
+```
+
+For development:
+
+```bash
+pip install -e .
+```
+
+## Commands
+
+The package installs two commands:
+
+- `fourpoints`
+- `get_results`
+
+## Usage
+
+### `fourpoints`
+
+Generate the equilibrium and nonequilibrium Gaussian inputs from four input/auxiliary pairs:
+
+```bash
+fourpoints input1.com aux1.out input2.com aux2.out input3.com aux3.out input4.com aux4.out
+```
+
+Each auxiliary file can be either a Gaussian output file with an optimized geometry or a `.chk` file.
+
+### `get_results`
+
+Analyze Gaussian output files and compute Marcus-theory quantities:
+
+```bash
+get_results -r bi_rad.out re-bpy-co3-cl.out -p bi_cat.out re-bpy-co3-cl-1e.out -fp
+```
+
+Useful options:
+
+- `-fp` for the symmetric 4-point approximation
+- `-fpa` for the asymmetric 4-point approximation
+- `-hs` for the hard-sphere model
+- `-shs 95` for the simplified hard-sphere model
+- `-O results.txt` to append output to a file
+
+For 4-point analysis, the matching `*_eq.out` and `*_noneq.out` files should be present next to the main output files.
+
+## Quick check
+
+After installation, verify the commands are available:
+
+```bash
+fourpoints
+get_results -h
+```

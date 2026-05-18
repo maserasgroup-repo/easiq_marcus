@@ -1,0 +1,25 @@
+%mem=20GB
+%chk=re-bpy-co3-cl-1e_eq.chk
+#p b3lyp/gen EmpiricalDispersion=GD3BJ pseudo=read scrf=(solvent=n,n-DiMethylFormamide,pcm,read) nosymm pop=(Orbitals=20) geom=checkpoint guess=read
+
+Title Card Required
+
+-1 2
+
+-Re 0
+lanl2dz
+F    1   1.00
+      0.8690000              1.0000000
+****
+-C O N H Cl 0
+cc-pVDZ
+****
+
+-Re 0
+lanl2dz
+
+NonEq=write
+
+
+
+

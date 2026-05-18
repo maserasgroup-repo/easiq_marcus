@@ -1,0 +1,3 @@
+[console_scripts]
+fourpoints = easiq_marcus.fourpoints:main
+get_results = easiq_marcus.get_results:main
