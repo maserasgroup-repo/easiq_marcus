@@ -4,8 +4,8 @@
 
 The current workflow is intentionally simple:
 
-- `fourpoints` prepares the equilibrium and nonequilibrium Gaussian input files required for a four-point Marcus analysis
-- `get_results` parses Gaussian output files and reports reaction free energies, reorganization energies, and free-energy barriers
+- `fourpoints` prepares the equilibrium and nonequilibrium Gaussian input files required for a four-point Marcus analysis.
+- `get_results` parses Gaussian output files and reports reaction free energies, reorganization energies, and free-energy barriers. Note that beyond the four-points approach, this code also enables the application of empirical hard-sphere models.
 
 ## Installation
 
