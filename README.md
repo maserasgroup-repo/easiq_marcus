@@ -47,6 +47,43 @@ get_results -h
 
 `easiq-marcus` supports two main styles of Marcus-theory analysis.
 
+## Core formulas
+
+For the standard symmetric Marcus picture, the free-energy barrier is
+
+```text
+ΔG‡ = (λ + ΔGr°)^2 / (4λ)
+```
+
+where:
+
+- `ΔGr°` is the reaction free energy
+- `λ` is the reorganization energy
+
+In the four-point route, the code computes reactant- and product-side reorganization energies:
+
+```text
+λR = VR(qP) - VR(qR)
+λP = VP(qR) - VP(qP)
+```
+
+and, in the symmetric approximation, uses
+
+```text
+λ = (λR + λP) / 2
+```
+
+If the two sides are significantly different, the asymmetric Marcus expression can be used:
+
+```text
+ΔG‡ = λR * [(-λP + sqrt(λR λP + (λR - λP) ΔGr°)) / (λR - λP)]^2
+```
+
+The code exposes these two routes through:
+
+- `-fp` for the symmetric four-point treatment
+- `-fpa` for the asymmetric four-point treatment
+
 ### 1. Four-point Marcus analysis
 
 This is the most explicit workflow in the package. It uses:
@@ -66,8 +103,33 @@ From those files, `get_results` extracts:
 
 - the hard-sphere model with `-hs`
 - the simplified hard-sphere model with `-shs`
+- the Savéant correction for dissociative transfer events with `-bde`
 
 These routes are useful when you want a fast estimate without running the full four-point cycle. They require solvent and size information such as radii or volumes, and they are available as options in the example workflow below. For the present README, the worked example is focused on the four-point route because it is the most fully documented and reproducible one.
+
+For the hard-sphere model, the solvent contribution is estimated as
+
+```text
+λS = (NA e^2 / 4πϵ0) * (1/2rD + 1/2rA - 1/R) * (1/ϵopt - 1/ϵ)
+```
+
+with `R = rD + rA`.
+
+For the simplified hard-sphere model, the code uses
+
+```text
+λS = A * (1/2rD + 1/2rA - 1/R)
+```
+
+where `A` is one of `95, 96, 97, 98, 99`.
+
+For dissociative electron- or energy-transfer events, the Savéant correction is available as
+
+```text
+λ = λS + BDFE
+```
+
+where `BDFE` is provided with the `-bde` option in kcal/mol.
 
 ## General usage
 
@@ -109,7 +171,8 @@ Useful options:
 - `-fp` for the symmetric four-point approximation
 - `-fpa` for the asymmetric four-point approximation
 - `-hs` for the hard-sphere model
-- `-shs 95` for the simplified hard-sphere model
+- `-shs <95|96|97|98|99|100>` for the simplified hard-sphere model
+- `-bde <value>` to apply the Savéant correction on top of `-hs` or `-shs`
 - `-O results.txt` to append output to a file instead of printing
 
 For four-point analysis, the corresponding `*_eq.out` and `*_noneq.out` files must be present in the same directory as the main output files.
@@ -253,6 +316,33 @@ These modes require additional solvent and molecular size information:
 - `-d` and `-d_opt` for `-hs`
 
 We do not give a single recommended hard-sphere result in this README because those values depend directly on the radius/volume and dielectric choices supplied by the user. The option is nonetheless available in the code and can be useful as a faster or more approximate screening route.
+
+### Step 7. Optional: Savéant correction for dissociative events
+
+If the transfer event is concerted with bond cleavage, you can add a bond dissociation free energy correction with `-bde`.
+
+With the hard-sphere model:
+
+```bash
+get_results -r reactant1.out reactant2.out \
+            -p product1.out product2.out \
+            -hs ... -bde 25.0
+```
+
+With the simplified hard-sphere model:
+
+```bash
+get_results -r reactant1.out reactant2.out \
+            -p product1.out product2.out \
+            -shs 95 ... -bde 25.0
+```
+
+Here:
+
+- `25.0` is an example `BDFE` value in kcal/mol
+- the final reorganization energy used in the barrier expression becomes `λ = λS + BDFE`
+
+This option is intended for dissociative SET/EnT situations where a pure solvent-only reorganization estimate would be unrealistically small.
 
 ## What `get_results` extracts from Gaussian outputs
 
