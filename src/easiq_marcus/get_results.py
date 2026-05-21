@@ -31,7 +31,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     requiredNamed.add_argument("-p", "--Product", help="Products", nargs="+", type=Path)
 
-    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose mode")
+    #parser.add_argument("-v", "--verbose", action="store_true", help="Verbose mode")
     parser.add_argument(
         "-fp",
         "--four_points",
@@ -100,12 +100,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="File to write the Data. If it exists, the data will be appended. If not specified it will print to the console",
         default=None,
     )
-    parser.add_argument(
-        "-details",
-        "--details_lambda",
-        action="store_true",
-        help="Gives additional information about the calculated lambdas. Specifically, it splits lambda into inner (solute) and outer (solvent) contributions.",
-    )
+    #parser.add_argument(
+    #    "-details",
+    #    "--details_lambda",
+    #    action="store_true",
+    #    help="Gives additional information about the calculated lambdas. Specifically, it splits lambda into inner (solute) and outer (solvent) contributions.",
+    #)
     return parser
 
 
