@@ -94,12 +94,12 @@ def build_parser() -> argparse.ArgumentParser:
         default="default",
         type=lambda x: x.lower(),
     )
-    parser.add_argument(
-        "-O",
-        "--OutFile",
-        help="File to write the Data. If it exists, the data will be appended. If not specified it will print to the console",
-        default=None,
-    )
+    #parser.add_argument(
+    #    "-O",
+    #    "--OutFile",
+    #    help="File to write the Data. If it exists, the data will be appended. If not specified it will print to the console",
+    #    default=None,
+    #)
     #parser.add_argument(
     #    "-details",
     #    "--details_lambda",
