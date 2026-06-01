@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility wrapper for the installed `fourpoints` command."""
+"""Source-tree wrapper for the installed `fourpoints` command."""
 
 import sys
 from pathlib import Path
