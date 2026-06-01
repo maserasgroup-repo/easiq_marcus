@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility wrapper for the installed `get_results` command."""
+"""Source-tree wrapper for the installed `get_results` command."""
 
 import sys
 from pathlib import Path
