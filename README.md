@@ -42,7 +42,6 @@ You can verify the installation with:
 fourpoints
 get_results -h
 ```
-
 ## What the code does
 
 `easiq-marcus` supports two main approaches to apply Marcus theory:
