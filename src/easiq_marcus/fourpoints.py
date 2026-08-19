@@ -9,6 +9,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
+SUPPORTED_INPUT_SUFFIXES = {".gjf", ".com"}
+SUPPORTED_AUX_SUFFIXES = {".out", ".log", ".chk"}
+
+
 PERIODIC_TABLE = {
     1: "H",
     2: "He",
@@ -370,6 +374,23 @@ def ensure_same_extension_output(input_path: Path, suffix: str) -> Path:
     return input_path.with_name(f"{input_path.stem}{suffix}{input_path.suffix}")
 
 
+def validate_pair(input_path: Path, aux_path: Path) -> None:
+    if input_path.suffix.lower() not in SUPPORTED_INPUT_SUFFIXES:
+        supported = ", ".join(sorted(SUPPORTED_INPUT_SUFFIXES))
+        raise ValueError(
+            f"{input_path} is not a supported Gaussian input file. "
+            f"Supported extensions: {supported}."
+        )
+
+    if aux_path.suffix.lower() not in SUPPORTED_AUX_SUFFIXES:
+        supported = ", ".join(sorted(SUPPORTED_AUX_SUFFIXES))
+        raise ValueError(
+            f"{aux_path} is not a supported auxiliary file. "
+            f"Use a Gaussian output file (.out or .log) or a checkpoint file (.chk). "
+            f"Supported extensions: {supported}."
+        )
+
+
 def print_next_steps(eq_outputs: list[tuple[Path, str]], noneq_outputs: list[Path]) -> None:
     eq_names = ", ".join(path.name for path, _ in eq_outputs)
     noneq_names = ", ".join(path.name for path in noneq_outputs)
@@ -388,7 +409,10 @@ def main(argv: list[str] | None = None) -> int:
 
     if len(argv) != 8:
         print(
-            "Usage: fourpoints input1 aux1 input2 aux2 input3 aux3 input4 aux4",
+            "Usage: fourpoints input1.gjf aux1.out|aux1.log|aux1.chk "
+            "input2.gjf aux2.out|aux2.log|aux2.chk "
+            "input3.gjf aux3.out|aux3.log|aux3.chk "
+            "input4.gjf aux4.out|aux4.log|aux4.chk",
             file=sys.stderr,
         )
         return 1
@@ -400,6 +424,13 @@ def main(argv: list[str] | None = None) -> int:
             return 1
 
     pairs = paired_names(paths)
+    for input_path, aux_path in pairs:
+        try:
+            validate_pair(input_path, aux_path)
+        except ValueError as exc:
+            print(exc, file=sys.stderr)
+            return 1
+
     parsed_inputs = [parse_gaussian_input(input_path) for input_path, _ in pairs]
 
     eq_outputs: list[tuple[Path, str]] = []

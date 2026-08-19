@@ -124,6 +124,10 @@ def write_2_file(outfile: str):
     return writer
 
 
+def companion_output_path(outfile: Path, suffix: str) -> Path:
+    return outfile.with_name(f"{outfile.stem}{suffix}{outfile.suffix}")
+
+
 def parse_potential_energy(text: str, method: str) -> float | None:
     patterns: dict[str, list[str]] = {
         "default": [rf"SCF Done:\s+E\([^)]+\)\s*=\s*({FLOAT_RE})"],
@@ -236,7 +240,7 @@ class Tools:
         """
         text = Path(InFilepath).read_text(encoding="utf-8", errors="replace")
 
-        if str(InFilepath).endswith("_noneq.out"):
+        if Path(InFilepath).stem.endswith("_noneq"):
             match = re.findall(
                 rf"After PCM corrections, the energy is\s+({FLOAT_RE})", text
             )
@@ -323,14 +327,14 @@ class Tools:
             U_Pnoneq_lst, U_Peq_lst = [], []
 
             for outfile in reactant:
-                outfileRnoneq_path = outfile.with_name(f"{outfile.stem}_noneq.out")
-                outfileReq_path = outfile.with_name(f"{outfile.stem}_eq.out")
+                outfileRnoneq_path = companion_output_path(outfile, "_noneq")
+                outfileReq_path = companion_output_path(outfile, "_eq")
                 U_Rnoneq_lst.append(float(self.get_U(outfileRnoneq_path)))
                 U_Req_lst.append(float(self.get_U(outfileReq_path)))
 
             for outfile in product:
-                outfilePnoneq_path = outfile.with_name(f"{outfile.stem}_noneq.out")
-                outfilePeq_path = outfile.with_name(f"{outfile.stem}_eq.out")
+                outfilePnoneq_path = companion_output_path(outfile, "_noneq")
+                outfilePeq_path = companion_output_path(outfile, "_eq")
                 U_Pnoneq_lst.append(float(self.get_U(outfilePnoneq_path)))
                 U_Peq_lst.append(float(self.get_U(outfilePeq_path)))
 
@@ -502,14 +506,14 @@ class Tools:
             U_Pnoneq_lst, U_Peq_lst = [], []
 
             for outfile in reactant:
-                outfileRnoneq_path = outfile.with_name(f"{outfile.stem}_noneq.out")
-                outfileReq_path = outfile.with_name(f"{outfile.stem}_eq.out")
+                outfileRnoneq_path = companion_output_path(outfile, "_noneq")
+                outfileReq_path = companion_output_path(outfile, "_eq")
                 U_Rnoneq_lst.append(float(self.get_U(outfileRnoneq_path)))
                 U_Req_lst.append(float(self.get_U(outfileReq_path)))
 
             for outfile in product:
-                outfilePnoneq_path = outfile.with_name(f"{outfile.stem}_noneq.out")
-                outfilePeq_path = outfile.with_name(f"{outfile.stem}_eq.out")
+                outfilePnoneq_path = companion_output_path(outfile, "_noneq")
+                outfilePeq_path = companion_output_path(outfile, "_eq")
                 U_Pnoneq_lst.append(float(self.get_U(outfilePnoneq_path)))
                 U_Peq_lst.append(float(self.get_U(outfilePeq_path)))
 

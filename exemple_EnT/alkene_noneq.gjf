@@ -1,0 +1,18 @@
+%mem=20GB
+%chk=alkene_triplet_eq.chk
+#p b3lyp/gen EmpiricalDispersion=GD3BJ pseudo=read scrf=(solvent=acetonitrile,pcm,read) nosymm pop=(Orbitals=20) geom=checkpoint guess=read
+
+Title Card Required
+
+0 1
+
+-C B O H 0
+cc-pVDZ
+****
+
+
+NonEq=read
+
+
+
+

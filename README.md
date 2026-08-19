@@ -5,7 +5,7 @@
 The current workflow is intentionally simple and includes two commands:
 
 - `fourpoints` prepares the equilibrium and nonequilibrium Gaussian input files required for a four-point Marcus analysis.
-- `get_results` parses Gaussian output files and reports reaction free energies, reorganization energies, and free-energy barriers. Note that beyond the four-points approach, this code also enables the application of empirical hard-sphere models.
+- `get_results` parses Gaussian output files (`.out` or `.log`) and reports reaction free energies, reorganization energies, and free-energy barriers. Note that beyond the four-points approach, this code also enables the application of empirical hard-sphere models.
 
 ## Installation
 
@@ -36,14 +36,13 @@ The package installs two commands:
 - `fourpoints`
 - `get_results`
 
-Once the installation is complete, you should see a confirmation message indicating that it was successful. If not, make sure all required packages are installed and try again.
-
 You can verify the installation with:
 
 ```bash
 fourpoints
 get_results -h
 ```
+
 ## What the code does
 
 `easiq-marcus` supports two main approaches to apply Marcus theory:
@@ -149,7 +148,7 @@ Each auxiliary file can be either:
 
 This choice matters:
 
-- if you pass an `.out` file, `fourpoints` extracts the final geometry from that output and writes it explicitly into the generated `*_eq.gjf` file
+- if you pass an `.out` or `.log` file, `fourpoints` extracts the final geometry from that output and writes it explicitly into the generated `*_eq.gjf` file
 - if you pass a `.chk` file, `fourpoints` copies that checkpoint to the corresponding `*_eq.chk` file and modifies the generated `*_eq.gjf` route section so Gaussian reads geometry and wavefunction from the checkpoint using `geom=checkpoint` and `guess=read`
 
 In other words, checkpoint usage is not automatic just because `.chk` files are present in the folder. The `.chk` file is used only if you explicitly provide it as the auxiliary argument to `fourpoints`.
@@ -159,9 +158,11 @@ The command writes:
 - `*_eq.gjf` files for the equilibrium jobs
 - `*_noneq.gjf` files for the nonequilibrium jobs
 
+The generated `.gjf` files do not include an explicit processor directive such as `%nprocshared`. Add the desired `%nprocshared` line before submitting the Gaussian jobs if you want to control the number of processors.
+
 ### `get_results`
 
-Analyze Gaussian output files and compute Marcus-theory quantities:
+Analyze Gaussian output files (`.out` or `.log`) and compute Marcus-theory quantities:
 
 ```bash
 get_results -r reactant1.out reactant2.out -p product1.out product2.out -fp
@@ -176,7 +177,7 @@ Useful options:
 - `-bde <value>` to apply the Savéant correction on top of `-hs` or `-shs`
 - `-O results.txt` to append output to a file instead of printing
 
-For four-point analysis, the corresponding `*_eq.out` and `*_noneq.out` files must be present in the same directory as the main output files.
+For four-point analysis, the corresponding `*_eq.out`/`*_noneq.out` or `*_eq.log`/`*_noneq.log` files must be present in the same directory as the main output files.
 
 ## Worked example: SET from a BI(·) radical to a Re-bipyridine complex
 
@@ -318,6 +319,47 @@ These modes require additional solvent and molecular size information:
 
 We do not give a single recommended hard-sphere result in this README because those values depend directly on the radius/volume and dielectric choices supplied by the user. The option is nonetheless available in the code and can be useful as a faster or more approximate screening route.
 
+## Worked example: EnT from triplet thioxanthone to an alkene
+
+The repository also includes a complete energy-transfer example in [exemple_EnT](exemple_EnT/). This case describes triplet-triplet EnT from thioxanthone (TX) to an alkene.
+
+The four-point inputs were generated with:
+
+```bash
+fourpoints alkene.gjf alkene.out \
+           alkene_triplet.gjf alkene_triplet.out \
+           TX_triplet.gjf TX_triplet.out \
+           TX.gjf TX.out
+```
+
+The symmetric four-point barrier is obtained with:
+
+```bash
+get_results -r TX_triplet.out alkene.out \
+            -p TX.out alkene_triplet.out -fp
+```
+
+For this example, the symmetric treatment gives:
+
+- `ΔG_r° = -9.2 kcal/mol`
+- `lambda_R = 77.9 kcal/mol`
+- `lambda_P = 37.4 kcal/mol`
+- `lambda = 57.6 kcal/mol`
+- `ΔG‡ = 10.2 kcal/mol`
+
+The asymmetric treatment is obtained with:
+
+```bash
+get_results -r TX_triplet.out alkene.out \
+            -p TX.out alkene_triplet.out -fpa
+```
+
+and gives:
+
+- `ΔG‡ = 8.0 kcal/mol`
+
+Here, `lambda_R` and `lambda_P` differ substantially, so the asymmetric result can be more chemically meaningful because it accounts for reactant and product parabolas with different curvatures.
+
 ### Step 7. Optional: Savéant correction for dissociative events
 
 If the transfer event is concerted with bond cleavage, you can add a bond dissociation free energy correction with `-bde`.
@@ -372,8 +414,8 @@ if that line is present.
 ## Notes and limitations
 
 - The package is currently designed around Gaussian-style output parsing.
-- Four-point analysis expects the `*_eq.out` and `*_noneq.out` files to follow the naming convention generated by `fourpoints`.
-- The example in this repository is a SET from BI(·) to a Re-based catalyst; it is intended as both a regression test and a tutorial.
+- Four-point analysis expects the `*_eq.out`/`*_noneq.out` or `*_eq.log`/`*_noneq.log` files to follow the naming convention generated by `fourpoints`.
+- The examples in this repository include a SET from BI(·) to a Re-based catalyst and an EnT from triplet thioxanthone to an alkene; they are intended as both regression tests and tutorials.
 
 ## Authors
 
