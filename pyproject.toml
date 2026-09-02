@@ -8,6 +8,8 @@ version = "0.1.0"
 description = "Utilities to apply the Marcus theory for calculating electron and energy transfer free-energy barriers using Gaussian 16."
 readme = "README.md"
 requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Lucía Morán-González" },
   { name = "Albert Solé-Daura" },
