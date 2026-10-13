@@ -425,4 +425,4 @@ Feliu Maseras
 
 ## Citation
 
-If you use `easiq-marcus` in academic work, please cite the associated software paper once available, and cite Gaussian as appropriate for the underlying quantum-chemical calculations.
+If you use `easiq-marcus` in academic work, please cite the associated software paper: Journal of Computational Chemistry, 2026, 47, e70513 (http://dx.doi.org/10.1002/jcc.70513), and cite Gaussian as appropriate for the underlying quantum-chemical calculations.
