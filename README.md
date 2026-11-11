@@ -137,7 +137,11 @@ where `BDFE` is provided with the `-bde` option in kcal/mol.
 
 Generate the equilibrium and nonequilibrium Gaussian inputs from four input/auxiliary pairs:
 
-For a reaction having the following equation : reactant1(input1.gjf) + reactant2(input3.gjf) → product1(input2.gjf) + product2(input4.gjf)
+For a reaction having the following equation :
+
+``
+reactant1(input1.gjf) + reactant2(input3.gjf) → product1(input2.gjf) + product2(input4.gjf)
+```
 
 The command line will be 
 
