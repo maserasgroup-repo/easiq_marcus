@@ -137,14 +137,20 @@ where `BDFE` is provided with the `-bde` option in kcal/mol.
 
 Generate the equilibrium and nonequilibrium Gaussian inputs from four input/auxiliary pairs:
 
+For a reaction having the following equation : reactant1(input1.gjf) + reactant2(input3.gjf) → product1(input2.gjf) + product2(input4.gjf)
+
+The command line will be 
+
 ```bash
 fourpoints input1.gjf aux1.out input2.gjf aux2.out input3.gjf aux3.out input4.gjf aux4.out
 ```
 
+It is very important to have in mind that 
+
 Each auxiliary file can be either:
 
 - a Gaussian output file containing the optimized geometry
-- a Gaussian checkpoint file (`.chk`)
+- a Gaussian checkpoint file (`.chk`) 
 
 This choice matters:
 
