@@ -139,7 +139,7 @@ Generate the equilibrium and nonequilibrium Gaussian inputs from four input/auxi
 
 For a reaction having the following equation :
 
-``
+```text
 reactant1(input1.gjf) + reactant2(input3.gjf) → product1(input2.gjf) + product2(input4.gjf)
 ```
 
