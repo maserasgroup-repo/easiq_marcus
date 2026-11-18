@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 import sys
 from dataclasses import dataclass
@@ -227,13 +228,24 @@ def update_chk_lines(link0_lines: list[str], chk_name: str) -> list[str]:
     return new_lines
 
 
+def keyword_head(token: str) -> str:
+    """Keyword name of a route token: 'opt' for opt, opt=tight, opt(maxcycle=100), Opt=(TS,CalcFC)."""
+    return re.split(r"[=(]", token, maxsplit=1)[0].strip().lower()
+
+
 def add_scrf_read(token: str) -> str:
-    if "=" not in token:
-        return token
-    key, value = token.split("=", 1)
-    if not value.startswith("(") or not value.endswith(")"):
-        return token
-    inner = value[1:-1].strip()
+    """Return the SCRF token with 'read' among its options, for every Gaussian spelling:
+    scrf, scrf=pcm, scrf=(pcm,solvent=x), scrf(smd,solvent=x), SCRF=(SMD, Solvent=x).
+    Without 'read' Gaussian ignores the NonEq=write/read input line silently."""
+    stripped = token.strip()
+    key = re.match(r"[A-Za-z]+", stripped).group(0)
+    rest = stripped[len(key):].lstrip()
+    if rest.startswith("="):
+        rest = rest[1:].lstrip()
+    if rest.startswith("(") and rest.endswith(")"):
+        inner = rest[1:-1]
+    else:
+        inner = rest
     options = [part.strip() for part in inner.split(",") if part.strip()]
     if not any(part.lower() == "read" for part in options):
         options.append("read")
@@ -253,7 +265,7 @@ def update_route_lines(route_lines: list[str], checkpoint_mode: bool) -> list[st
 
     for token in tokens[1:]:
         lowered = token.lower()
-        head = lowered.split("=", 1)[0]
+        head = keyword_head(token)
         if head in {"opt", "freq"}:
             continue
         if head == "scrf":
